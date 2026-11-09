@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 470" font-family="'Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif" role="img" aria-label="Comparison of two PAYNT search strategies: the baseline depth-first stack search versus a best-first priority-queue search ordered by heuristics, which reaches a good decision tree sooner.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a0f1e"/><stop offset="1" stop-color="#111a33"/></linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#0d9488"/></linearGradient>
+    <linearGradient id="slate" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#94a3b8"/><stop offset="1" stop-color="#64748b"/></linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#64748b"/></marker>
+  </defs>
+  <rect width="1180" height="470" rx="20" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="1179" height="469" rx="20" fill="none" stroke="#233049"/>
+
+  <text x="40" y="50" fill="#f1f5ff" font-size="23" font-weight="700">Best-first heuristic search for PAYNT policy-tree synthesis</text>
+  <text x="40" y="76" fill="#8ca0c4" font-size="14.5">Same sketch, same specification — only the order in which the family tree is explored changes.</text>
+
+  <!-- LEFT panel: baseline DFS -->
+  <g filter="url(#soft)"><rect x="40" y="104" width="520" height="256" rx="14" fill="#141f38" stroke="#3a4a6b"/></g>
+  <rect x="40" y="104" width="520" height="5" rx="2.5" fill="url(#slate)"/>
+  <text x="64" y="138" fill="#cbd5e1" font-size="13" font-weight="700" letter-spacing="1">BASELINE · synthesis-original</text>
+  <text x="64" y="164" fill="#e2e8f0" font-size="17" font-weight="700">Depth-first search (LIFO stack)</text>
+  <!-- deep path glyph -->
+  <g stroke="#64748b" stroke-width="2" fill="#94a3b8">
+    <line x1="120" y1="200" x2="120" y2="236"/><line x1="120" y1="236" x2="120" y2="272"/><line x1="120" y1="272" x2="120" y2="308"/>
+    <line x1="120" y1="236" x2="168" y2="236"/><line x1="120" y1="272" x2="168" y2="272"/>
+    <circle cx="120" cy="200" r="7"/><circle cx="120" cy="236" r="7"/><circle cx="120" cy="272" r="7"/><circle cx="120" cy="308" r="7" fill="#cbd5e1"/>
+    <circle cx="168" cy="236" r="6" fill="#3a4a6b"/><circle cx="168" cy="272" r="6" fill="#3a4a6b"/>
+  </g>
+  <text x="210" y="214" fill="#9fb3d1" font-size="13.5">Explore one branch to the</text>
+  <text x="210" y="234" fill="#9fb3d1" font-size="13.5">bottom, then backtrack.</text>
+  <text x="210" y="266" fill="#8ca0c4" font-size="13">+ memory-frugal</text>
+  <text x="210" y="288" fill="#8ca0c4" font-size="13">− time spent on unpromising</text>
+  <text x="210" y="306" fill="#8ca0c4" font-size="13">&#160;&#160;&#160;families</text>
+
+  <!-- VS -->
+  <circle cx="590" cy="232" r="22" fill="#0e1830" stroke="#334467"/><text x="590" y="238" text-anchor="middle" fill="#cbd5e1" font-size="14" font-weight="700">vs</text>
+
+  <!-- RIGHT panel: modified BFS -->
+  <g filter="url(#soft)"><rect x="620" y="104" width="520" height="256" rx="14" fill="#0f2a2a" stroke="#1d7268"/></g>
+  <rect x="620" y="104" width="520" height="5" rx="2.5" fill="url(#teal)"/>
+  <text x="644" y="138" fill="#5eead4" font-size="13" font-weight="700" letter-spacing="1">THIS WORK · synthesis-modified</text>
+  <text x="644" y="164" fill="#e6fffb" font-size="17" font-weight="700">Best-first search (priority queue)</text>
+  <!-- best-first frontier glyph: concise tree -->
+  <g stroke="#2dd4bf" stroke-width="2" fill="#5eead4">
+    <line x1="700" y1="200" x2="672" y2="244"/><line x1="700" y1="200" x2="728" y2="244"/>
+    <circle cx="700" cy="200" r="8"/><circle cx="672" cy="244" r="7"/><circle cx="728" cy="244" r="7"/>
+  </g>
+  <g fill="#99f6e4"><circle cx="760" cy="186" r="2.5"/><circle cx="782" cy="210" r="2"/><circle cx="748" cy="230" r="2"/></g>
+  <text x="800" y="200" fill="#bdf0e8" font-size="13.5">Order families by a heuristic;</text>
+  <text x="800" y="220" fill="#bdf0e8" font-size="13.5">chase the promising frontier.</text>
+  <text x="800" y="252" fill="#9fe8df" font-size="13">+ reaches a good tree sooner</text>
+  <text x="800" y="274" fill="#9fe8df" font-size="13">+ smaller, more interpretable</text>
+  <text x="800" y="296" fill="#9fe8df" font-size="13">− higher memory (open frontier)</text>
+
+  <!-- heuristics -->
+  <g font-size="12.5" font-weight="600">
+    <text x="644" y="330" fill="#8ca0c4" font-weight="400" font-size="12.5">heuristics:</text>
+    <g transform="translate(716,318)"><rect width="92" height="22" rx="11" fill="#13233a" stroke="#2dd4bf" stroke-opacity="0.5"/><text x="46" y="15" text-anchor="middle" fill="#5eead4">value_only</text></g>
+    <g transform="translate(816,318)"><rect width="150" height="22" rx="11" fill="#13233a" stroke="#38bdf8" stroke-opacity="0.5"/><text x="75" y="15" text-anchor="middle" fill="#7dd3fc">value_size (−α·size)</text></g>
+    <g transform="translate(974,318)"><rect width="100" height="22" rx="11" fill="#13233a" stroke="#a78bfa" stroke-opacity="0.5"/><text x="50" y="15" text-anchor="middle" fill="#c4b5fd">bounds_gap</text></g>
+  </g>
+
+  <!-- footer band -->
+  <rect x="40" y="392" width="1100" height="52" rx="12" fill="#0e1830" stroke="#223150"/>
+  <text x="64" y="416" fill="#e2e8f0" font-size="13.5" font-weight="700">Both solvers packaged side by side · one Dockerfile builds either tree</text>
+  <text x="64" y="434" fill="#8ca0c4" font-size="12.5">run_simple_race.sh launches all 5 variants with <tspan fill="#9fe8df">--stop-on-first-improvement</tspan> to compare anytime behaviour</text>
+  <g transform="translate(980,404)"><rect width="128" height="30" rx="8" fill="#0b2436" stroke="#155e82"/><text x="64" y="20" text-anchor="middle" fill="#7dd3fc" font-size="12.5" font-weight="600">Storm · Stormpy</text></g>
+</svg>
